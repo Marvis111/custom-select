@@ -17,7 +17,9 @@ function Home(){
         <>
         <br/>
         <Select name='' className='' >
-            <Option className='' >Hello</Option>
+            <Option className='' onSelectOption={()=>{
+                
+            }}>Hello</Option>
         </Select>
         </>
     )
