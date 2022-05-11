@@ -1,26 +1,19 @@
-import {
-useState,
-MouseEvent
-
-} 
-
-from 'react'
-
 
 
 import {  Select,Option } from "./customSelect/index";
-function Home(){
 
-    const [hey,setHey] = useState('heyy' as string | null);
+function Home(){
   
     return(
         <>
         <br/>
-        <Select name='' className='' >
-            <Option className='' onSelectOption={()=>{
-                
-            }}>Hello</Option>
+        <Select name='options'>
+            <Option value='option1'>Option 1</Option>
+            <Option value='option2'>Option 2</Option>
+            <Option value='option3'>Option 3</Option>
         </Select>
+
+
         </>
     )
 }

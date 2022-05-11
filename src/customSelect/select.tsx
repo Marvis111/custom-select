@@ -1,33 +1,51 @@
-import {} from '@chakra-ui/react'
+//import {} from '@chakra-ui/react'
 import {SelectCustomProps} from './components/selectInterfaces'
 
 
-/**
+/** 
  * Custom React component used to select one item from a list of options.
  */
 export const Select = function<T>(props : SelectCustomProps<T>){
 
     const {children,searchable,name, defaultValue,style,...rest} = props
-    console.log(children)
+
     return (
         <>
         {
             !searchable ?
 
             //this custom select needs styling...
-            <div {...rest} style={{...style}}  className={
-             props.className ? 
-             'custom-select '+props.className:
-             'custom-select'
-        }> 
-        <input type="hidden" name={ name }
-        className='select-option-class'
-         id='select-option-id'
-        value={ defaultValue ? defaultValue :
-         "coming: this will change base on the the onselect funcion" }/>
+            <div {...rest} style={{...style,display:'flex'}}  className={
 
-        {children}
-        
+             props.className ? 
+
+             'custom-select-wrapper '+props.className
+             :
+             'custom-select-wrapper'
+        }> 
+        <input type="hidden" id='select-field' name={ name }
+            value = {defaultValue? defaultValue : undefined}
+        />
+            <div className='select-options-wrapper'>
+                 {
+                 /** all the provided options goes in here
+                  * 
+                  * this div has is what displays the provided options
+                  * 
+                  * so this needs to be styled  just like a select option dropdown
+               */}
+                {children}
+            </div>
+
+            <div className='select-dropdown-icon'>
+                {/** Style this dropdown menu icon.. */}
+                <svg viewBox="0 0 24 24"  width='20px' height='20px'>
+                <path
+                fill="currentColor"
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+                </svg>
+            </div>
             </div>
             :
             "cant perform searchable for now..."
@@ -35,4 +53,14 @@ export const Select = function<T>(props : SelectCustomProps<T>){
         </>
     )
 }
+//subjected to styling
+const IconBaseStyle = {
 
+    position: "absolute",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    pointerEvents: "none",
+    top: "50%",
+    transform: "translateY(-50%)",
+}
