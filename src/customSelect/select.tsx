@@ -7,20 +7,28 @@ import {SelectCustomProps} from './components/selectInterfaces'
  */
 export const Select = function<T>(props : SelectCustomProps<T>){
 
-    const {children,searchable,style,...rest} = props
+    const {children,searchable,name, defaultValue,style,...rest} = props
     console.log(children)
     return (
         <>
         {
             !searchable ?
+
+            //this custom select needs styling...
             <div {...rest} style={{...style}}  className={
              props.className ? 
              'custom-select '+props.className:
              'custom-select'
         }> 
+        <input type="hidden" name={ name }
+        className='select-option-class'
+         id='select-option-id'
+        value={ defaultValue ? defaultValue :
+         "coming: this will change base on the the onselect funcion" }/>
+
         {children}
         
-        </div>
+            </div>
             :
             "cant perform searchable for now..."
         }
