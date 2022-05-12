@@ -27,7 +27,9 @@ export interface SelectCustomProps <T>  {
 
     value?:string,
 
-    onChange?:ChangeEventHandler<T>
+    onChange?:ChangeEventHandler<T>,
+
+    searchContainerStyle?:CSSProperties,
 
 
 }

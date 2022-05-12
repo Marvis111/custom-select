@@ -22,3 +22,5 @@ export interface CustomOptionProps <T> {
 
 
 }
+
+export type SelectChildType = CustomOptionProps<Element>

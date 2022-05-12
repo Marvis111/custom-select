@@ -10,7 +10,7 @@ import {SelectCustomProps} from './components/selectInterfaces'
 export const Select = function<T>(props : SelectCustomProps<T>){
 
     const {children,searchable,name,onChange,
-        placeholder, defaultValue,style,...rest} = props
+        placeholder, defaultValue,style,searchContainerStyle,...rest} = props
 
     return (
         <>
@@ -56,7 +56,36 @@ export const Select = function<T>(props : SelectCustomProps<T>){
             </div>
             </div>
             :
-            "cant perform searchable for now..."
+            <>
+    <div {...rest} style={{...style,display:'flex'}}  className={
+                props.className ? 
+                `${selectWrapper} `+props.className
+                :
+                selectWrapper
+                }>
+        <div className='select-options-wrapper'>
+            <input type={'text'} placeholder={placeholder} style={{
+                width:'max-content',
+                height:"35px",
+                outline:"vissible",
+                border:"1px solid grey",
+                ...searchContainerStyle
+            }} 
+            id='searchable'
+            />
+            {children}
+        </div>
+        <div className='select-dropdown-icon'>
+                {/** Style this dropdown menu icon.. */}
+                <svg viewBox="0 0 24 24"  width='20px' height='20px'>
+                <path
+                fill="currentColor"
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+                </svg>
+        </div>
+    </div>
+            </>
         }
         </>
     )

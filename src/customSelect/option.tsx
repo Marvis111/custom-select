@@ -26,11 +26,13 @@ const OnSelectOption = function (e : MouseEvent <HTMLDivElement,globalThis.Mouse
 }
 
 const OnSelectOptionHover = function (e : MouseEvent <HTMLDivElement,globalThis.MouseEvent> ){
-    const optionValue = e.currentTarget.firstElementChild?.getAttribute('value');
-    const selectField = document.getElementById('select-field');
+    
     document.onkeydown = function(event){
         if(event.code =='Enter'){
-            selectField?.setAttribute('value',optionValue as string)
+            //select the option..
+
+            OnSelectOption(e);
+
         }
     }
 }
