@@ -1,6 +1,7 @@
 import { 
     ReactNode,
     CSSProperties,
+    ChangeEventHandler
 } 
     from 'react'
 
@@ -25,6 +26,8 @@ export interface SelectCustomProps <T>  {
     defaultValue ? :string,
 
     value?:string,
+
+    onChange?:ChangeEventHandler<T>
 
 
 }

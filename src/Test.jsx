@@ -3,11 +3,7 @@
 function TestEvent(){
     return(
         <>
-        <div
-        onClick={(e)=>{
-            
-        }}
-        >
+        <div>
             hello
         </div>
         </>

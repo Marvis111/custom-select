@@ -4,8 +4,10 @@ function Test(){
  
     return(
         <>
-        <Select>
-            <option>Hey</option>
+        <Select placeholder='Options to select'>
+            <option>Hey1</option>
+            <option>Hey2</option>
+            <option>Hey3</option>
         </Select>
         </>
     )

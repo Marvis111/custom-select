@@ -1,8 +1,7 @@
 import { MouseEvent ,
-
-
 } from 'react'
 import {CustomOptionProps} from './components/optionInterface'
+
 
 export const Option = function <T> (props: CustomOptionProps<T> ){
 
@@ -10,23 +9,28 @@ export const Option = function <T> (props: CustomOptionProps<T> ){
     return(
         <>
         <div {...rest } 
-        className={ props.className ?'custom-option '+props.className:'custom-option'}
+        className={ props.className ? 'custom-option '+props.className:'custom-option'}
         onClick={(e) =>{OnSelectOption(e)}}
+        onMouseEnter={(e) =>{OnSelectOptionHover(e)}}
         >
             <input type={'hidden'} value={value} />
             { children }
-
-
         </div>
         </>
     )
 }
-
-const OnSelectOption = function(e : MouseEvent<HTMLDivElement,globalThis.MouseEvent> ){
-
+const OnSelectOption = function (e : MouseEvent <HTMLDivElement,globalThis.MouseEvent> ){
     const selectField = document.getElementById('select-field');
-
      const optionValue = e.currentTarget.firstElementChild?.getAttribute('value');
-
      selectField?.setAttribute('value',optionValue as string)
+}
+
+const OnSelectOptionHover = function (e : MouseEvent <HTMLDivElement,globalThis.MouseEvent> ){
+    const optionValue = e.currentTarget.firstElementChild?.getAttribute('value');
+    const selectField = document.getElementById('select-field');
+    document.onkeydown = function(event){
+        if(event.code =='Enter'){
+            selectField?.setAttribute('value',optionValue as string)
+        }
+    }
 }

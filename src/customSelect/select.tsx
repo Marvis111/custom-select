@@ -1,4 +1,6 @@
 //import {} from '@chakra-ui/react'
+import { ChangeEvent } from 'react'
+import { selectWrapper } from './components/classes'
 import {SelectCustomProps} from './components/selectInterfaces'
 
 
@@ -7,24 +9,25 @@ import {SelectCustomProps} from './components/selectInterfaces'
  */
 export const Select = function<T>(props : SelectCustomProps<T>){
 
-    const {children,searchable,name, defaultValue,style,...rest} = props
+    const {children,searchable,name,onChange,
+        placeholder, defaultValue,style,...rest} = props
 
     return (
         <>
         {
             !searchable ?
-
             //this custom select needs styling...
             <div {...rest} style={{...style,display:'flex'}}  className={
 
              props.className ? 
 
-             'custom-select-wrapper '+props.className
+             `${selectWrapper} `+props.className
              :
-             'custom-select-wrapper'
+             selectWrapper
         }> 
         <input type="hidden" id='select-field' name={ name }
             value = {defaultValue? defaultValue : undefined}
+         
         />
             <div className='select-options-wrapper'>
                  {
@@ -33,7 +36,12 @@ export const Select = function<T>(props : SelectCustomProps<T>){
                   * this div has is what displays the provided options
                   * 
                   * so this needs to be styled  just like a select option dropdown
-               */}
+               */
+                    //generate a div if placeholder is specified
+                    placeholder?
+                    <div id='custom-option-placeholder'><span>{placeholder}</span></div>
+                    :""
+               }
                 {children}
             </div>
 
