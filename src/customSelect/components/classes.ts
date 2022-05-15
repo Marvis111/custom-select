@@ -1,4 +1,4 @@
 
-export const selectComponentClass = 'custom-select'
+export const selectComponentClass = 'select-io'
 
-export const selectWrapper = 'custom-select-wrapper'
+export const selectWrapper = 'select-io'

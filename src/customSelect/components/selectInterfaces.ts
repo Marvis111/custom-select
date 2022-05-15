@@ -1,7 +1,9 @@
 import { 
     ReactNode,
     CSSProperties,
-    ChangeEventHandler
+    ChangeEventHandler,
+    ReactHTMLElement,
+    ReactElement
 } 
     from 'react'
 
@@ -9,7 +11,7 @@ export interface SelectCustomProps <T>  {
     
     id?:string,
 
-    children ? : ReactNode,
+    children : ReactElement[],
 
     disabled ? : boolean,
 
@@ -30,6 +32,11 @@ export interface SelectCustomProps <T>  {
     onChange?:ChangeEventHandler<T>,
 
     searchContainerStyle?:CSSProperties,
+    theme?:'theme-2' | 'theme-1' | string
 
 
+}
+
+enum Theme{
+    MON,TUE
 }

@@ -1,6 +1,8 @@
 //import {} from '@chakra-ui/react'
-import { ChangeEvent } from 'react'
+import { ChangeEvent,ReactElement, ReactNode,useEffect,useState } from 'react'
 import { selectWrapper } from './components/classes'
+import { IconArrowHead } from './components/icons/arrowDown'
+import { CustomOptionProps } from './components/optionInterface'
 import {SelectCustomProps} from './components/selectInterfaces'
 
 
@@ -8,96 +10,80 @@ import {SelectCustomProps} from './components/selectInterfaces'
  * Custom React component used to select one item from a list of options.
  */
 export const Select = function<T>(props : SelectCustomProps<T>){
-
     const {children,searchable,name,onChange,
-        placeholder, defaultValue,style,searchContainerStyle,...rest} = props
+        placeholder,id, defaultValue,theme,disabled,style,searchContainerStyle,...rest} = props
+        const[isDisabled,setDisabled] = useState("");
+        const [searchValue,setSearchValue] = useState("");
+        const [mytheme,setTheme] = useState("");
+        const filterCondition = (child:ReactElement,searchValue:string) =>{
+           return child.props.children.toLowerCase().indexOf(searchValue) != -1
+        }
+        useEffect(()=>{
+           // console.log(searchValue)
+           // setDisabled(disabled?"disabled":"");
+            switch (theme) {
+                case "theme-2":
+                    setTheme('theme2')
+                    break;
+                default:
+                    setTheme('');
+                    break;
+            }
+        },[isDisabled,mytheme,searchable,props,mytheme])
 
     return (
         <>
-        {
-            !searchable ?
-            //this custom select needs styling...
-            <div {...rest} style={{...style,display:'flex'}}  className={
-
-             props.className ? 
-
-             `${selectWrapper} `+props.className
-             :
-             selectWrapper
-        }> 
-        <input type="hidden" id='select-field' name={ name }
-            value = {defaultValue? defaultValue : undefined}
-         
+            {
+                !searchable ?
+                <>
+                <div {...rest} className={
+                `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
+                style={{...style} }
+                > 
+        <input type="hidden" id={ 'select-field' } name={ name }
+            value = {defaultValue && defaultValue}
         />
-            <div className='select-options-wrapper'>
-                 {
-                 /** all the provided options goes in here
-                  * 
-                  * this div has is what displays the provided options
-                  * 
-                  * so this needs to be styled  just like a select option dropdown
-               */
-                    //generate a div if placeholder is specified
-                    placeholder?
-                    <div id='custom-option-placeholder'><span>{placeholder}</span></div>
-                    :""
-               }
-                {children}
+            <b><span className="value">{
+                placeholder? placeholder : "Select ..."
+            }</span> <IconArrowHead />  </b>
+           <ul id='option-listXy323' style={{display:`${searchable && 'none'}`}}>{children}</ul>
             </div>
-
-            <div className='select-dropdown-icon'>
-                {/** Style this dropdown menu icon.. */}
-                <svg viewBox="0 0 24 24"  width='20px' height='20px'>
-                <path
-                fill="currentColor"
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-                </svg>
-            </div>
-            </div>
-            :
-            <>
-    <div {...rest} style={{...style,display:'flex'}}  className={
-                props.className ? 
-                `${selectWrapper} `+props.className
+                </>
                 :
-                selectWrapper
-                }>
-        <div className='select-options-wrapper'>
-            <input type={'text'} placeholder={placeholder} style={{
-                width:'max-content',
-                height:"35px",
-                outline:"vissible",
-                border:"1px solid grey",
-                ...searchContainerStyle
-            }} 
-            id='searchable'
-            />
-            {children}
-        </div>
-        <div className='select-dropdown-icon'>
-                {/** Style this dropdown menu icon.. */}
-                <svg viewBox="0 0 24 24"  width='20px' height='20px'>
-                <path
-                fill="currentColor"
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-                </svg>
-        </div>
-    </div>
-            </>
-        }
+                <>
+                <div {...rest} className={
+                `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
+                style={{...style} }
+                > 
+                <div className='wrapper234fw3'>
+                <input list="optionsa3432423633rsd4534s45" id={ 'select-field' } name={ name }  className={
+                `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
+                 placeholder={placeholder && placeholder} 
+                onChange={(e)=>{
+                    document.getElementById('option-listXy323').style.display = 'block' as string
+                    setSearchValue(e.target.value)
+                }}
+                /><b><IconArrowHead /></b>
+                </div>
+                <ul id='option-listXy323'>
+                      {
+                     searchValue !="" &&
+                        children.map(child=>{
+                            return(
+                                <>
+                                {
+                                    child.props.children.toLowerCase()
+                                    .indexOf(searchValue.toLowerCase()) >= 0 &&
+                                    child
+                                }
+                                </>
+                            )
+                        })
+                      }
+                      </ul>
+                </div>
+                </>
+            }
         </>
-    )
-}
-//subjected to styling
-const IconBaseStyle = {
-
-    position: "absolute",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    pointerEvents: "none",
-    top: "50%",
-    transform: "translateY(-50%)",
+    );
 }
