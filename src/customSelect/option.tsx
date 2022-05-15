@@ -26,7 +26,6 @@ const OnSelectOption = function (e : MouseEvent <HTMLLIElement,globalThis.MouseE
      selectField?.setAttribute('value',optionValue as string)
      document.getElementById('option-listXy323').style.display = 'none' as string
 }
-
 const OnSelectOptionHover = function (e : MouseEvent <HTMLLIElement,globalThis.MouseEvent> ){
     const selectField = document.getElementById('select-field');
     const optionValue = e?.target?.firstElementChild?.getAttribute('value')

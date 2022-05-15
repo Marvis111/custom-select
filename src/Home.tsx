@@ -7,19 +7,20 @@ function Home(){
     return(
         <>
     
-        <Select name='options' onChange={(e) =>{
-            console.log(e)
-        }}
+        <Select name='options'
         placeholder='Favourite Sport'
         defaultValue='Hello'
-        theme='theme-1'
+        theme='theme-2'
         searchable
+        style={{
+           width:"500px" 
+        }}
         >
-            <Option value='option1'  >Option One</Option>
+            <Option value='option1' >Option One</Option>
             <Option value='option2'>Option Two</Option>
             <Option value='option3'>Option Three</Option>
             <Option value='option4'>Option Four</Option>
-            <Option value='option5'>Option FHIVE</Option>
+            <Option value='option5'>Option FIVE</Option>
         </Select>
        
 

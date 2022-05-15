@@ -19,8 +19,7 @@ export const Select = function<T>(props : SelectCustomProps<T>){
            return child.props.children.toLowerCase().indexOf(searchValue) != -1
         }
         useEffect(()=>{
-           // console.log(searchValue)
-           // setDisabled(disabled?"disabled":"");
+           setDisabled(disabled?"disabled":"");
             switch (theme) {
                 case "theme-2":
                     setTheme('theme2')
@@ -53,7 +52,9 @@ export const Select = function<T>(props : SelectCustomProps<T>){
                 <>
                 <div {...rest} className={
                 `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
-                style={{...style} }
+                style={{
+                    height:"auto",padding:"0",border:"none",
+                    ...style} }
                 > 
                 <div className='wrapper234fw3'>
                 <input list="optionsa3432423633rsd4534s45" id={ 'select-field' } name={ name }  className={
