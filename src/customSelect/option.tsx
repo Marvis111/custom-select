@@ -42,8 +42,3 @@ const OnSelectOptionHover = function (e : MouseEvent <HTMLLIElement,globalThis.M
         }
     }
 }
-
-/**$('.select-io ul li').removeClass('active');
-            $(this).addClass('active');
-            $('.select-io b span').text($(this).text());
-            $('.select-io ul').slideToggle(); */

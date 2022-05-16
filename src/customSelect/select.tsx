@@ -11,7 +11,7 @@ import {SelectCustomProps} from './components/selectInterfaces'
  */
 export const Select = function<T>(props : SelectCustomProps<T>){
     const {children,searchable,name,onChange,
-        placeholder,id, defaultValue,theme,disabled,style,searchContainerStyle,...rest} = props
+        placeholder,id, defaultValue,theme,disabled,style,optionBoxStyle,...rest} = props
         const[isDisabled,setDisabled] = useState("");
         const [searchValue,setSearchValue] = useState("");
         const [mytheme,setTheme] = useState("");
@@ -36,7 +36,8 @@ export const Select = function<T>(props : SelectCustomProps<T>){
                 !searchable ?
                 <>
                 <div {...rest} className={
-                `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
+                `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`
+            }
                 style={{...style} }
                 > 
         <input type="hidden" id={ 'select-field' } name={ name }
@@ -45,7 +46,7 @@ export const Select = function<T>(props : SelectCustomProps<T>){
             <b><span className="value">{
                 placeholder? placeholder : "Select ..."
             }</span> <IconArrowHead />  </b>
-           <ul id='option-listXy323' style={{display:`${searchable && 'none'}`}}>{children}</ul>
+           <ul id='option-listXy323' style={{...optionBoxStyle,display:`${searchable && 'none'}`}}>{children}</ul>
             </div>
                 </>
                 :
@@ -57,7 +58,7 @@ export const Select = function<T>(props : SelectCustomProps<T>){
                     ...style} }
                 > 
                 <div className='wrapper234fw3'>
-                <input list="optionsa3432423633rsd4534s45" id={ 'select-field' } name={ name }  className={
+                <input list="optionsa3432423633rsd4534s45" id={ 'select-field' } disabled={disabled && disabled} name={ name }  className={
                 `${selectWrapper} ${isDisabled} ${mytheme} ${props.className?props.className:""}`}
                  placeholder={placeholder && placeholder} 
                 onChange={(e)=>{
@@ -66,7 +67,7 @@ export const Select = function<T>(props : SelectCustomProps<T>){
                 }}
                 /><b><IconArrowHead /></b>
                 </div>
-                <ul id='option-listXy323'>
+                <ul id='option-listXy323' style={{...optionBoxStyle}}>
                       {
                      searchValue !="" &&
                         children.map(child=>{

@@ -31,12 +31,8 @@ export interface SelectCustomProps <T>  {
 
     onChange?:ChangeEventHandler<T>,
 
-    searchContainerStyle?:CSSProperties,
-    theme?:'theme-2' | 'theme-1' | string
+    optionBoxStyle?:CSSProperties,
+    
+    theme?:'theme-2' | 'theme-1' | string,
 
-
-}
-
-enum Theme{
-    MON,TUE
 }
